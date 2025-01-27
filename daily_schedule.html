@@ -1,120 +1,152 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-body {
-  font-family: sans-serif; /* Sleek font */
-  background-color: #f0f0f0; /* Neutral background */
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin-top: 20px;
-}
-
-th, td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: left;
-}
-
-th {
-  background-color: #eee;
-}
-
-.past {
-  color: #888; /* Grayed-out color for past times */
-}
-
-.important {
-  background-color: #ffcccc; /* Light red for important */
-}
-
-.urgent {
-  background-color: #ffffcc; /* Light yellow for urgent */
-}
-
-.daily {
-  background-color: #ccffcc; /* Light green for daily */
-}
-
-select {
-  padding: 5px;
-  border-radius: 3px;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Time Planner</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    .header {
+      background-color: #333;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+    }
+    .time-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .time-table th,
+    .time-table td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+    .time-table th {
+      background-color: #444;
+      color: white;
+    }
+    .time-table td {
+      background-color: #f9f9f9;
+    }
+    .current-time {
+      background-color: #e0e0e0;
+    }
+    .task-input {
+      width: 80%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .task-selector {
+      width: 15%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      text-align: center;
+    }
+    .important {
+      background-color: yellow;
+    }
+    .urgent {
+      background-color: red;
+    }
+    .daily {
+      background-color: blue;
+      color: white;
+    }
+    .highlight {
+      background-color: #ffe0b3;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <div class="header">Daily Time Planner</div>
+    <table class="time-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Task</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="schedule">
+        <!-- Time Rows Will Be Added Here Dynamically -->
+      </tbody>
+    </table>
+  </div>
 
-<h1>Daily Time Planner</h1>
+  <script>
+    const scheduleContainer = document.getElementById('schedule');
+    const currentTime = new Date().getHours(); // Current hour in 24-hour format
 
-<table>
-  <tr>
-    <th>Time</th>
-    <th>Task</th>
-    <th>Priority</th>
-  </tr>
-  <tr>
-    <td>7:00 AM</td>
-    <td><input type="text"></td>
-    <td>
-      <select>
-        <option value="">Select</option>
-        <option value="important">Important</option>
-        <option value="urgent">Urgent</option>
-        <option value="daily">Daily</option>
-      </select>
-    </td>
-  </tr>
-  <tr>
-    <td>8:00 AM</td>
-    <td><input type="text"></td>
-    <td>
-      <select>
-        <option value="">Select</option>
-        <option value="important">Important</option>
-        <option value="urgent">Urgent</option>
-        <option value="daily">Daily</option>
-      </select>
-    </td>
-  </tr>
-  <tr>
-    <td>9:00 AM</td>
-    <td><input type="text"></td>
-    <td>
-      <select>
-        <option value="">Select</option>
-        <option value="important">Important</option>
-        <option value="urgent">Urgent</option>
-        <option value="daily">Daily</option>
-      </select>
-    </td>
-  </tr>
-  <tr>
-    <td>11:00 PM</td>
-    <td><input type="text"></td>
-    <td>
-      <select>
-        <option value="">Select</option>
-        <option value="important">Important</option>
-        <option value="urgent">Urgent</option>
-        <option value="daily">Daily</option>
-      </select>
-    </td>
-  </tr>
-</table>
+    // Create time slots from 7 AM to 11 PM
+    for (let hour = 7; hour <= 23; hour++) {
+      const row = document.createElement('tr');
+      row.classList.add(hour === currentTime ? 'current-time' : '');
 
-<script>
-  // Get current hour
-  var currentHour = new Date().getHours();
+      // Time Column
+      const timeCell = document.createElement('td');
+      timeCell.textContent = `${hour % 12 === 0 ? 12 : hour % 12} ${hour < 12 ? 'AM' : 'PM'}`;
+      row.appendChild(timeCell);
 
-  // Gray out past hours
-  for (var i = 7; i < currentHour; i++) {
-    var row = document.getElementsByTagName("tr")[i - 6]; // Adjust index as needed
-    row.classList.add("past");
-  }
-</script>
+      // Task Column
+      const taskCell = document.createElement('td');
+      const taskInput = document.createElement('input');
+      taskInput.type = 'text';
+      taskInput.classList.add('task-input');
+      taskCell.appendChild(taskInput);
+      row.appendChild(taskCell);
 
+      // Status Column
+      const statusCell = document.createElement('td');
+      const statusSelector = document.createElement('select');
+      statusSelector.classList.add('task-selector');
+
+      const defaultOption = document.createElement('option');
+      defaultOption.textContent = 'Select Status';
+      statusSelector.appendChild(defaultOption);
+
+      const importantOption = document.createElement('option');
+      importantOption.value = 'important';
+      importantOption.textContent = 'Important';
+      importantOption.classList.add('important');
+      statusSelector.appendChild(importantOption);
+
+      const urgentOption = document.createElement('option');
+      urgentOption.value = 'urgent';
+      urgentOption.textContent = 'Urgent';
+      urgentOption.classList.add('urgent');
+      statusSelector.appendChild(urgentOption);
+
+      const dailyOption = document.createElement('option');
+      dailyOption.value = 'daily';
+      dailyOption.textContent = 'Daily';
+      dailyOption.classList.add('daily');
+      statusSelector.appendChild(dailyOption);
+
+      statusCell.appendChild(statusSelector);
+      row.appendChild(statusCell);
+
+      scheduleContainer.appendChild(row);
+    }
+  </script>
 </body>
 </html>
