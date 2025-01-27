@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Bar with Completion Checklist</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+
+    .project-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      background: #e0e0e0;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      height: 20px;
+      margin-bottom: 20px;
+    }
+
+    .progress {
+      background: #4caf50;
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 10px;
+      transform: scale(1.2);
+    }
+
+    .complete {
+      text-decoration: line-through;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="project-container">
+    <div class="project-header">
+      <h2>Project Checklist</h2>
+      <span id="progress-percentage">0%</span>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress" id="progress-bar"></div>
+    </div>
+
+    <ul id="checklist">
+      <li><input type="checkbox"> Task 1</li>
+      <li><input type="checkbox"> Task 2</li>
+      <li><input type="checkbox"> Task 3</li>
+      <li><input type="checkbox"> Task 4</li>
+    </ul>
+  </div>
+
+  <script>
+    const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+    const progressBar = document.getElementById('progress-bar');
+    const progressPercentage = document.getElementById('progress-percentage');
+
+    function updateProgress() {
+      const totalTasks = checkboxes.length;
+      const completedTasks = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+      const percentage = Math.round((completedTasks / totalTasks) * 100);
+
+      progressBar.style.width = percentage + '%';
+      progressPercentage.textContent = percentage + '%';
+    }
+
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        checkbox.parentElement.classList.toggle('complete', checkbox.checked);
+        updateProgress();
+      });
+    });
+
+    // Initialize progress on load
+    updateProgress();
+  </script>
+</body>
+</html>
