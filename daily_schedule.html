@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  font-family: sans-serif; /* Sleek font */
+  background-color: #f0f0f0; /* Neutral background */
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #eee;
+}
+
+.past {
+  color: #888; /* Grayed-out color for past times */
+}
+
+.important {
+  background-color: #ffcccc; /* Light red for important */
+}
+
+.urgent {
+  background-color: #ffffcc; /* Light yellow for urgent */
+}
+
+.daily {
+  background-color: #ccffcc; /* Light green for daily */
+}
+
+select {
+  padding: 5px;
+  border-radius: 3px;
+}
+</style>
+</head>
+<body>
+
+<h1>Daily Time Planner</h1>
+
+<table>
+  <tr>
+    <th>Time</th>
+    <th>Task</th>
+    <th>Priority</th>
+  </tr>
+  <tr>
+    <td>7:00 AM</td>
+    <td><input type="text"></td>
+    <td>
+      <select>
+        <option value="">Select</option>
+        <option value="important">Important</option>
+        <option value="urgent">Urgent</option>
+        <option value="daily">Daily</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>8:00 AM</td>
+    <td><input type="text"></td>
+    <td>
+      <select>
+        <option value="">Select</option>
+        <option value="important">Important</option>
+        <option value="urgent">Urgent</option>
+        <option value="daily">Daily</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>9:00 AM</td>
+    <td><input type="text"></td>
+    <td>
+      <select>
+        <option value="">Select</option>
+        <option value="important">Important</option>
+        <option value="urgent">Urgent</option>
+        <option value="daily">Daily</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>11:00 PM</td>
+    <td><input type="text"></td>
+    <td>
+      <select>
+        <option value="">Select</option>
+        <option value="important">Important</option>
+        <option value="urgent">Urgent</option>
+        <option value="daily">Daily</option>
+      </select>
+    </td>
+  </tr>
+</table>
+
+<script>
+  // Get current hour
+  var currentHour = new Date().getHours();
+
+  // Gray out past hours
+  for (var i = 7; i < currentHour; i++) {
+    var row = document.getElementsByTagName("tr")[i - 6]; // Adjust index as needed
+    row.classList.add("past");
+  }
+</script>
+
+</body>
+</html>
