@@ -3,111 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkbox Image Widget</title>
+    <title>Custom Widget</title>
     <style>
         body {
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            background-color: #F7F4E9;
-            font-family: Arial, sans-serif;
+            background-color: #e1f0e6; /* Pastel sage background */
         }
 
         .widget {
             width: 500px;
             height: 500px;
-            border: 2px solid #D9E4DD;
+            background-image: url('https://www.canva.com/design/DAGdWsqhtcM/MBSUKJA4FUHy-BwBhVJKcA/view');
+            background-size: cover;
+            background-position: center;
             border-radius: 8px;
             display: flex;
             flex-direction: column;
-            background-color: #F7F4E9;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .image-container {
-            flex: 1;
-            background-image: url('untitleddesign.png'); /* Replace with your image URL */
-            background-size: cover;
-            background-position: center;
-            border-bottom: 2px solid #D9E4DD;
-        }
-
-        .controls {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px;
-            background-color: #E4E7D5;
+            justify-content: space-between;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .checkbox-row {
             display: flex;
-            gap: 8px;
-            margin-bottom: 10px;
+            justify-content: space-around;
+        }
+
+        .checkbox-row input {
+            margin: 0 5px;
         }
 
         .checkbox-row label {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #8A9D91;
+            color: #d9db76; /* Pastel yellow text color */
             font-size: 14px;
         }
 
-        .checkbox-row input[type="checkbox"] {
-            accent-color: #D9E4DD;
-            transform: scale(1.2);
+        .progress-bar-container {
+            width: 100%;
+            height: 10px;
+            background-color: #d9db76; /* Pastel yellow */
+            border-radius: 5px;
+            margin-top: 10px;
         }
 
         .progress-bar {
-            width: 100%;
-            height: 10px;
-            border-radius: 5px;
-            background-color: #D9E4DD;
-            overflow: hidden;
-        }
-
-        .progress {
+            width: 50%; /* Adjust progress here */
             height: 100%;
-            background-color: #F2CB88;
-            width: 0%; /* Adjust via JavaScript */
-            transition: width 0.3s ease-in-out;
+            background-color: #a3d5b4; /* Pastel sage progress */
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
     <div class="widget">
-        <div class="image-container"></div>
-        <div class="controls">
-            <div class="checkbox-row">
-                <label>1<input type="checkbox" class="progress-checkbox"></label>
-                <label>2<input type="checkbox" class="progress-checkbox"></label>
-                <label>3<input type="checkbox" class="progress-checkbox"></label>
-                <label>4<input type="checkbox" class="progress-checkbox"></label>
-                <label>5<input type="checkbox" class="progress-checkbox"></label>
-                <label>6<input type="checkbox" class="progress-checkbox"></label>
-                <label>7<input type="checkbox" class="progress-checkbox"></label>
-                <label>8<input type="checkbox" class="progress-checkbox"></label>
-            </div>
-            <div class="progress-bar">
-                <div class="progress"></div>
-            </div>
+        <div class="checkbox-row">
+            <input type="checkbox" id="check1"><label for="check1">1</label>
+            <input type="checkbox" id="check2"><label for="check2">2</label>
+            <input type="checkbox" id="check3"><label for="check3">3</label>
+            <input type="checkbox" id="check4"><label for="check4">4</label>
+            <input type="checkbox" id="check5"><label for="check5">5</label>
+            <input type="checkbox" id="check6"><label for="check6">6</label>
+            <input type="checkbox" id="check7"><label for="check7">7</label>
+            <input type="checkbox" id="check8"><label for="check8">8</label>
+        </div>
+        <div class="progress-bar-container">
+            <div class="progress-bar"></div> <!-- Adjust width to reflect progress -->
         </div>
     </div>
-
-    <script>
-        const checkboxes = document.querySelectorAll('.progress-checkbox');
-        const progress = document.querySelector('.progress');
-
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', () => {
-                const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
-                const progressWidth = (checkedCount / checkboxes.length) * 100;
-                progress.style.width = `${progressWidth}%`;
-            });
-        });
-    </script>
 </body>
 </html>
