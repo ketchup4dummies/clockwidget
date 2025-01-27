@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox Image Widget</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #F7F4E9;
+            font-family: Arial, sans-serif;
+        }
+
+        .widget {
+            width: 500px;
+            height: 500px;
+            border: 2px solid #D9E4DD;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            background-color: #F7F4E9;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-container {
+            flex: 1;
+            background-image: url('https://www.canva.com/design/DAGdWsqhtcM/MBSUKJA4FUHy-BwBhVJKcA/view'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            border-bottom: 2px solid #D9E4DD;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            background-color: #E4E7D5;
+        }
+
+        .checkbox-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-row label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #8A9D91;
+            font-size: 14px;
+        }
+
+        .checkbox-row input[type="checkbox"] {
+            accent-color: #D9E4DD;
+            transform: scale(1.2);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #D9E4DD;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: #F2CB88;
+            width: 0%; /* Adjust via JavaScript */
+            transition: width 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="widget">
+        <div class="image-container"></div>
+        <div class="controls">
+            <div class="checkbox-row">
+                <label>1<input type="checkbox" class="progress-checkbox"></label>
+                <label>2<input type="checkbox" class="progress-checkbox"></label>
+                <label>3<input type="checkbox" class="progress-checkbox"></label>
+                <label>4<input type="checkbox" class="progress-checkbox"></label>
+                <label>5<input type="checkbox" class="progress-checkbox"></label>
+                <label>6<input type="checkbox" class="progress-checkbox"></label>
+                <label>7<input type="checkbox" class="progress-checkbox"></label>
+                <label>8<input type="checkbox" class="progress-checkbox"></label>
+            </div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const checkboxes = document.querySelectorAll('.progress-checkbox');
+        const progress = document.querySelector('.progress');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+                const progressWidth = (checkedCount / checkboxes.length) * 100;
+                progress.style.width = `${progressWidth}%`;
+            });
+        });
+    </script>
+</body>
+</html>
