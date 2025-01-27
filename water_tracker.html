@@ -5,7 +5,7 @@
 <style>
 body {
   font-family: sans-serif;
-  background-color: #f0f8ff; /* Soft blue background */
+  background-color: #f5f5f5; /* Light gray background */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,35 +13,48 @@ body {
 }
 
 .container {
-  background-color: #e0e0ff; /* Light purple background */
-  border-radius: 10px;
+  background-color: #e0e0e0; /* Slightly darker gray background */
+  border-radius: 15px;
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
-h1 {
-  color: #4b0082; /* Dark purple heading */
+.water-circles {
+  display: flex;
+  justify-content: space-around;
   margin-bottom: 20px;
 }
 
+.water-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #c0c0c0; /* Gray */
+  margin: 0 5px;
+}
+
+.water-circle.filled {
+  background-color: #808000; /* Olive green */
+}
+
 .progress-bar {
-  width: 200px;
-  height: 20px;
-  background-color: #d0d0ff; /* Light purple progress bar background */
+  width: 150px;
+  height: 10px;
+  background-color: #d3d3d3; /* Light gray progress bar background */
   border-radius: 5px;
   margin-bottom: 10px;
 }
 
 .progress {
   height: 100%;
-  background-color: #0000ff; /* Blue progress bar fill */
+  background-color: #556B2F; /* Darker olive green */
   border-radius: 5px;
   transition: width 0.3s ease;
 }
 
 button {
-  background-color: #4b0082; /* Dark purple button */
+  background-color: #808000; /* Olive green button */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -54,20 +67,37 @@ button {
 <body>
 
 <div class="container">
-  <h1>Water Tracker</h1>
+  <div class="water-circles">
+    <div class="water-circle" id="circle1"></div>
+    <div class="water-circle" id="circle2"></div>
+    <div class="water-circle" id="circle3"></div>
+    <div class="water-circle" id="circle4"></div>
+    <div class="water-circle" id="circle5"></div>
+  </div>
+
   <div class="progress-bar">
     <div class="progress" id="progress"></div>
   </div>
+
   <button onclick="addWater()">Add Water</button>
 </div>
 
 <script>
   let waterDrank = 0;
-  const totalWater = 8; // 8 glasses of water per day (adjust as needed)
+  const totalWater = 5; 
 
   function updateProgress() {
     const progressPercent = (waterDrank / totalWater) * 100;
     document.getElementById("progress").style.width = progressPercent + "%";
+
+    for (let i = 1; i <= totalWater; i++) {
+      const circle = document.getElementById("circle" + i);
+      if (i <= waterDrank) {
+        circle.classList.add("filled");
+      } else {
+        circle.classList.remove("filled");
+      }
+    }
   }
 
   function addWater() {
@@ -78,7 +108,7 @@ button {
     updateProgress();
   }
 
-  updateProgress(); // Initial progress bar update
+  updateProgress(); // Initial progress bar and circles update
 </script>
 
 </body>
