@@ -23,56 +23,45 @@
       text-align: center;
     }
 
-    #water-glass {
-      width: 100px;
-      height: 200px;
+    .water-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .glass-icon {
+      width: 30px;
+      height: 50px;
       background-color: #cfe2ff;
       border-radius: 10px;
-      margin-bottom: 20px;
-      position: relative;
+      margin-right: 10px;
     }
 
-    #water-level {
-      background-color: #007bff;
-      width: 100%;
-      height: 0%;
-      position: absolute;
-      bottom: 0;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      transition: height 0.3s ease-in-out;
-    }
-
-    button {
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 20px;
-      cursor: pointer;
+    .checkbox {
+      margin-right: 5px;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Water Tracker</h1>
-    <div id="water-glass">
-      <div id="water-level"></div>
+
+    <div class="water-row">
+      <div class="glass-icon"></div>
+      <input type="checkbox" class="checkbox">
     </div>
-    <button onclick="addWater()">Drink Water</button>
+
+    <div class="water-row">
+      <div class="glass-icon"></div>
+      <input type="checkbox" class="checkbox">
+    </div>
+
+    <div class="water-row">
+      <div class="glass-icon"></div>
+      <input type="checkbox" class="checkbox">
+    </div>
+
+    </div>
   </div>
-
-  <script>
-    let waterLevel = 0; 
-    const maxWaterLevel = 200; 
-
-    function addWater() {
-      waterLevel += 20; // Adjust this value to change the amount of water added
-      if (waterLevel > maxWaterLevel) {
-        waterLevel = maxWaterLevel;
-      }
-      document.getElementById("water-level").style.height = waterLevel + "%";
-    }
-  </script>
 </body>
 </html>
