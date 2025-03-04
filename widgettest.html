@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Tracker Widget</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      padding: 20px;
+      color: #333;
+    }
+    .widget {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    h2 {
+      text-align: center;
+      color: #4a90e2;
+      margin-bottom: 20px;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .section h3 {
+      font-size: 18px;
+      color: #4a90e2;
+      margin-bottom: 10px;
+    }
+    .tracker {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .tracker label {
+      font-weight: bold;
+    }
+    .tracker input, .tracker select {
+      padding: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      width: 100px;
+    }
+    .tracker input[type="checkbox"] {
+      width: auto;
+    }
+    .button {
+      background: #4a90e2;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+    .button:hover {
+      background: #357abd;
+    }
+    .color-box {
+      display: flex;
+      gap: 10px;
+    }
+    .color-box div {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .color-box .low { background: #a8e6cf; }
+    .color-box .moderate { background: #ffd3b6; }
+    .color-box .high { background: #ff8b94; }
+  </style>
+</head>
+<body>
+  <div class="widget">
+    <h2>Health Tracker</h2>
+
+    <!-- Heart Rate -->
+    <div class="section">
+      <h3>Heart Rate</h3>
+      <div class="tracker">
+        <label>AM:</label>
+        <input type="number" placeholder="BPM">
+      </div>
+      <div class="tracker">
+        <label>PM:</label>
+        <input type="number" placeholder="BPM">
+      </div>
+    </div>
+
+    <!-- Blood Pressure -->
+    <div class="section">
+      <h3>Blood Pressure</h3>
+      <div class="tracker">
+        <label>AM:</label>
+        <input type="text" placeholder="mmHg">
+      </div>
+      <div class="tracker">
+        <label>PM:</label>
+        <input type="text" placeholder="mmHg">
+      </div>
+    </div>
+
+    <!-- Symptoms Tracker -->
+    <div class="section">
+      <h3>Symptoms Tracker</h3>
+      <div class="tracker">
+        <label><input type="checkbox"> Dizziness/lightheadedness</label>
+      </div>
+      <div class="tracker">
+        <label><input type="checkbox"> Fainting/pre-syncope</label>
+      </div>
+      <div class="tracker">
+        <label><input type="checkbox"> Palpitations</label>
+      </div>
+      <div class="tracker">
+        <label><input type="checkbox"> Fatigue</label>
+      </div>
+      <div class="tracker">
+        <label><input type="checkbox"> Headaches</label>
+      </div>
+      <div class="tracker">
+        <label><input type="checkbox"> Nausea</label>
+      </div>
+      <div class="tracker">
+        <label><input type="checkbox"> Brain fog/difficulty concentrating</label>
+      </div>
+      <div class="tracker">
+        <label><input type="checkbox"> Tremors</label>
+      </div>
+      <div class="tracker">
+        <label><input type="checkbox"> Chest pain</label>
+      </div>
+      <div class="tracker">
+        <label><input type="checkbox"> Shortness of breath</label>
+      </div>
+      <div class="tracker">
+        <label><input type="checkbox"> Temperature fluctuations</label>
+      </div>
+    </div>
+
+    <!-- Daily Activity -->
+    <div class="section">
+      <h3>Daily Activity</h3>
+      <div class="color-box">
+        <div class="low" title="Low"></div>
+        <div class="moderate" title="Moderate"></div>
+        <div class="high" title="High"></div>
+      </div>
+    </div>
+
+    <!-- Sleep -->
+    <div class="section">
+      <h3>Sleep</h3>
+      <div class="tracker">
+        <label>Duration (hrs):</label>
+        <input type="number" placeholder="Hours">
+      </div>
+      <div class="tracker">
+        <label>Quality:</label>
+        <select>
+          <option>Poor</option>
+          <option>Fair</option>
+          <option>Good</option>
+          <option>Excellent</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Hydration Tracker -->
+    <div class="section">
+      <h3>Hydration Tracker</h3>
+      <div class="tracker">
+        <label>Glasses of Water:</label>
+        <input type="number" placeholder="Count">
+      </div>
+    </div>
+
+    <!-- Stress Tracker -->
+    <div class="section">
+      <h3>Stress Tracker</h3>
+      <div class="tracker">
+        <label>Level:</label>
+        <select>
+          <option>Low</option>
+          <option>Moderate</option>
+          <option>High</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Daily Medication Tracker -->
+    <div class="section">
+      <h3>Daily Medication Tracker</h3>
+      <div class="tracker">
+        <label>Medication Taken:</label>
+        <input type="checkbox">
+      </div>
+    </div>
+
+    <!-- Minerals Intake -->
+    <div class="section">
+      <h3>Minerals Intake</h3>
+      <div class="tracker">
+        <label>Sodium:</label>
+        <input type="number" placeholder="mg">
+      </div>
+      <div class="tracker">
+        <label>Potassium:</label>
+        <input type="number" placeholder="mg">
+      </div>
+      <div class="tracker">
+        <label>Magnesium:</label>
+        <input type="number" placeholder="mg">
+      </div>
+      <div class="tracker">
+        <label>Iron:</label>
+        <input type="number" placeholder="mg">
+      </div>
+    </div>
+
+    <!-- Vitamins Intake -->
+    <div class="section">
+      <h3>Vitamins Intake</h3>
+      <div class="tracker">
+        <label>Vitamin B12:</label>
+        <input type="number" placeholder="mcg">
+      </div>
+      <div class="tracker">
+        <label>Vitamin D:</label>
+        <input type="number" placeholder="IU">
+      </div>
+      <div class="tracker">
+        <label>B Vitamins (Complex):</label>
+        <input type="number" placeholder="mg">
+      </div>
+      <div class="tracker">
+        <label>Vitamin C:</label>
+        <input type="number" placeholder="mg">
+      </div>
+    </div>
+
+    <!-- Menstruation Cycle -->
+    <div class="section">
+      <h3>Menstruation Cycle</h3>
+      <div class="tracker">
+        <label>Cycle Day:</label>
+        <input type="number" placeholder="Day">
+      </div>
+    </div>
+
+    <!-- Bowel Movements -->
+    <div class="section">
+      <h3>Bowel Movements</h3>
+      <div class="tracker">
+        <label>Count:</label>
+        <input type="number" placeholder="Times">
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button class="button">Save Daily Log</button>
+  </div>
+</body>
+</html>
